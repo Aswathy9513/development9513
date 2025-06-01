@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #fff, #f8f9fa);
+        }
+
+        .blog-container {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url("{% static 'images/contact/contact-bg.png' %}") center/cover no-repeat;
+            color: white;
+        }
+
+        .blog-container h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+        }
+
+        .breadcrumb {
+            margin-top: 20px;
+        }
+
+        .contact-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+    
+        .contact-info {
+            margin-left: 40px;
+        }
+    
+        /* Add space between the image and the content */
+        .contact-container .col-lg-6 {
+            padding-right: 20px; /* Add some space to the right of the image */
+        }
+    
+        .contact-container .col-lg-6 img {
+            margin-right: 20px; /* Space between the image and text */
+        }
+    </style>
+</head>
+
+<body>
+
+    {% comment %} Header {% endcomment %}
+    <div class="blog-container">
+        <h1><b>Contact</b></h1>
+    </div>
+
+    <br>
+
+    {% comment %} Breadcrumb {% endcomment %}
+    <nav aria-label="breadcrumb" class="ms-4">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+              {% if user.is_authenticated %}
+                  <a href="{% url 'buyerhome' %}" class="text-decoration-none">
+              {% else %}
+                  <a href="{% url 'home' %}" class="text-decoration-none">
+              {% endif %}
+                  <i class="bi bi-house-door"></i> Home
+              </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Contact</li>
+      </ol>
+  </nav>
+  
+
+    {% comment %} Contact Section {% endcomment %}
+    <div class="container contact-container">
+        <div class="row">
+
+          
+
+            <!-- Image -->
+            <div class="col-lg-6">
+                <img src="{% static 'images/contact/side.jpg' %}" alt="Side Image" class="img-fluid rounded shadow">
+            </div>
+
+              <!-- Contact Information -->
+              <div class="col-lg-6">
+                <h2>CONTACT US</h2>
+                <p>We are improving our services to serve you better.</p>
+                <p><strong>Address:</strong> 505 Silk Rd, New York</p>
+                <p><strong>Phone:</strong> +1 234 122 122</p>
+                <p><strong>Email:</strong> info.greenguard@gmail.com</p>
+                <p><strong>Open hours:</strong> Mon – Sun: 8 AM to 9 PM</p>
+                <p><strong>Happy hours:</strong> Sat: 2 PM to 4 PM</p>
+            </div>
+
+        </div>
+    </div>
+
+    <br><br>
+     <!-- GET TOUCH -->
+  <div class="container-fluid" style="background-color:white;">
+    <section class="contact-section" >
+       <div class="container">
+           <div class="row align-items-center">
+               <!-- Contact Form -->
+               <div class="col-md-6 contact-box">
+                   <div class="w-100">
+                       <h2 class="mb-4"  style="color:darkgreen;"><b>GET IN TOUCH</b></h2>
+                       <p style="color:darkgreen;">Send us a message, we will call back later</p>
+   
+                       <form>
+                           <div class="row">
+                               <div class="col-md-6 mb-3">
+                                   <input type="text" class="form-control" placeholder="Your Name">
+                               </div>
+                               <div class="col-md-6 mb-3">
+                                   <input type="email" class="form-control" placeholder="Your Email">
+                               </div>
+                           </div>
+                           <div class="mb-3">
+                               <input type="text" class="form-control" placeholder="Subject">
+                           </div>
+                           <div class="mb-3">
+                               <textarea class="form-control" placeholder="Message"></textarea>
+                           </div>
+                           <button type="submit" class="btn btn-green">SEND MESSAGE</button>
+                       </form>
+                   </div>
+               </div>
+   
+               <!-- Google Map -->
+               <div class="col-md-6">
+                   <div class="map-container">
+                       <iframe 
+                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093704!2d144.95592831531676!3d-37.81720997975144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d5dfcdc2dff%3A0x5045675218cee17!2sMelbourne%2C%20Australia!5e0!3m2!1sen!2sus!4v1634524294845!5m2!1sen!2sus" 
+                           allowfullscreen="" 
+                           loading="lazy" style="width:600px;height:350px;">
+                       </iframe>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+   </div>
+   {% comment %} #################################################################################################################  {% endcomment %}
+<br> <br> <br><br><br><br><br>
+
+{% comment %} ################################################################################################################################# {% endcomment %}
+  <!-- ##### Footer Area Start ##### -->
+  <footer class="bg-dark text-white py-5" style="background: linear-gradient(rgba(0, 50, 0, 0.8), rgba(0, 50, 0, 0.8)), url('{% static "images/home/footer-bg.jpg" %}') no-repeat center center/cover;">
+    <div class="container">
+      <div class="row">
+        <!-- Brand Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <img src="{% static 'images/home/logo-nav.jpeg' %}" alt="Logo" width="55" height="40" class="d-inline-block align-text-top">
+        <p>Plants are more than just greenery; they bring life, serenity, and a breath of fresh air into any space. With every leaf and root, they remind us to slow down, nurture, and grow alongside nature.</p>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white fs-5 d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; border: 1px solid white;"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white fs-5 d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; border: 1px solid white;"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white fs-5 d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; border: 1px solid white;"><i class="bi bi-google"></i></a>
+            <a href="#" class="text-white fs-5 d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; border: 1px solid white;"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white fs-5 d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; border: 1px solid white;"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+  
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h4 class="text-uppercase mb-4">Quick Link</h4>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">Purchase</a></li>
+            <li><a href="#" class="text-white">Payment</a></li>
+            <li><a href="#" class="text-white">Return</a></li>
+            <li><a href="#" class="text-white">Shipping</a></li>
+            <li><a href="#" class="text-white">Orders</a></li>
+            <li><a href="#" class="text-white">FAQs</a></li>
+            <li><a href="#" class="text-white">News</a></li>
+            <li><a href="#" class="text-white">Advertise</a></li>
+            <li><a href="#" class="text-white">Career</a></li>
+            <li><a href="#" class="text-white">Policies</a></li>
+          </ul>
+        </div>
+  
+        <!-- Best Seller -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h4 class="text-uppercase mb-4">Best Seller</h4>
+          <div class="d-flex mb-3">
+            <img src="{% static 'images/home/cascutus.jpg' %}" alt="Cactus" class="img-fluid" style="width: 60px; height: 60px;">
+            <div class="ms-3">
+              <p class="mb-1">Cactus Flower</p>
+              <strong>Rs.10.99</strong>
+            </div>
+          </div>
+          <div class="d-flex">
+            <img src="{% static 'images/home/tulip.jpg' %}" alt="Tulip" class="img-fluid" style="width: 60px; height: 60px;">
+            <div class="ms-3">
+              <p class="mb-1">Tulip Flower</p>
+              <strong>Rs.11.99</strong>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase mb-4">Contact</h4>
+          <p><strong>Address:</strong> 505 Silk Rd, New York</p>
+          <p><strong>Phone:</strong> +1 234 122 122</p>
+          <p><strong>Email:</strong> info.greenguard@gmail.com</p>
+          <p><strong>Open hours:</strong> Mon - Sun: 8 AM to 9 PM</p>
+          <p><strong>Happy hours:</strong> Sat: 2 PM to 4 PM</p>
+        </div>
+      </div>
+  
+      <hr class="bg-white">
+  
+      <!-- Footer Bottom -->
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="mb-0">&copy; Copyright 2025 All rights reserved</p>
+        <ul class="list-inline mb-10">
+          <li class="list-inline-item"><a href="#" class="text-white">Home</a></li>
+          <li class="list-inline-item"><a href="#" class="text-white">About</a></li>
+          <li class="list-inline-item"><a href="#" class="text-white">Service</a></li>
+          <li class="list-inline-item"><a href="#" class="text-white">Blog</a></li>
+          <li class="list-inline-item"><a href="#" class="text-white">Contact</a></li>
+        </ul>
+        <a href="#" class="btn btn-success rounded-circle"><i class="bi bi-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+    <!-- ##### Footer Area End ##### -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

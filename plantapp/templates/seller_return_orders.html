@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returned Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+     <!-- Back Arrow Button -->
+     <div class="mb-4">
+        <a href="{% url 'sellerhome' %}" class="btn btn-link">
+            <i class="bi bi-arrow-left-circle"></i> Back to Seller Home
+        </a>
+    </div>
+    <br>
+    <div class="container mt-5">
+        <h2 class="mb-4">Returned Orders</h2>
+
+        {% if returns %}
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Plant</th>
+                        <th>Buyer</th>
+                      
+                      <th>Return Reason</th>
+                      <th>Payment Method</th>
+
+                        <th>Return Status</th>
+                        <th>Refund Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for return_request in returns %}
+                        <tr>
+                            <td>{{ return_request.order.order_id }}</td>
+                            <td>{{ return_request.plant.plant_name }}</td>
+                            <td>{{ return_request.buyer.full_name }}</td>
+                            <td>{{ return_request.return_reason }}</td>
+                            <td>{{ return_request.payment.payment_method }}
+                            
+                            
+                            <td>
+                                <form method="POST" action="{% url 'update_return_status' return_request.id %}">
+                                    {% csrf_token %}
+                                    <select name="return_status" class="form-control">
+                                        <option value="Pending" {% if return_request.return_status == "Pending" %}selected{% endif %}>Pending</option>
+                                        <option value="Approved" {% if return_request.return_status == "Approved" %}selected{% endif %}>Approved</option>
+                                        <option value="Rejected" {% if return_request.return_status == "Rejected" %}selected{% endif %}>Rejected</option>
+                                    </select>
+                            </td>
+                            
+                            <td>
+                                    <select name="refund_status" class="form-control">
+                                        <option value="Not Initiated" {% if return_request.refund_status == "Not Initiated" %}selected{% endif %}>Not Initiated</option>
+                                        <option value="Processing" {% if return_request.refund_status == "Processing" %}selected{% endif %}>Processing</option>
+                                        <option value="Completed" {% if return_request.refund_status == "Completed" %}selected{% endif %}>Completed</option>
+                                    </select>
+                            </td>
+
+                            <td>
+                                    <button type="submit" class="btn btn-success btn-sm">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="alert alert-info">No return requests found for your products.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

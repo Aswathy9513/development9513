@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/your-custom-style.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .blog-post-header .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2b542c;
+            text-align: center;
+        }
+
+        .fixed-top-left {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+
+        .btn-success {
+            font-weight: 600;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .media {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .media img {
+            border: 4px solid #d4edda;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .media-body {
+            text-align: center;
+        }
+
+        .media-body h2 {
+            color: #155724;
+            font-weight: 600;
+        }
+
+        .intro {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .intro strong {
+            color: #5a6268;
+        }
+
+        .intro input[type="file"] {
+            margin-top: 15px;
+        }
+
+        .special {
+            font-weight: 600;
+            background-color: #198754;
+            border: none;
+            color: white;
+        }
+
+        .special:hover {
+            background-color: #157347;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- View Orders Button -->
+    <div class="fixed-top-left">
+        <a href="{% url 'buyer_orders' %}" class="btn btn-success">View Orders</a>
+    </div>
+    <br><br>
+
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+            <header class="blog-post-header mb-4">
+                <h2 class="title mb-2">Plant diseases detection</h2>
+            </header>
+
+            <section id="one" class="wrapper style1">
+                <div class="item mb-5">
+                    <div class="media">
+
+                        {% if predictions %}
+                            <p><img width="350" src="{{ url }}"></p>
+                            <div class="media-body">
+                                <div class="intro">
+                                    <h2>Crop species & Health status Predictions: </h2>
+                                    {{ predictions }}
+                                    <a class="btn btn-primary mt-3" href="{% url 'predict' %}">Predict Again</a>
+                                </div>
+                            </div>
+
+                        {% else %}
+                            <p><img id="output" width="350" height="350"></p>
+                            <div class="media-body">
+                                <h2>{{ title }}</h2>
+                                <strong>ResNet Trained on PlantVillage Dataset</strong>
+                                <div class="intro">
+                                    <strong>Note: </strong>Upload image to the Django web service serving the classification model and then predict.
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <p>
+                                            <input type="file" accept="image/*" name="myfile" id="file" onchange="loadFile(event)" required>
+                                            <br>
+                                            <input type="submit" value="Predict" class="special btn btn-primary mt-2">
+                                        </p>
+                                        {{ form }}
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div><!--//media-->
+                </div><!--//item-->
+            </section>
+
+        </div><!--//container-->
+    </article>
+
+    <!-- Image preview script -->
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
+</body>
+</html>

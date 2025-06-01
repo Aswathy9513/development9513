@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Plant Spinner Redirect</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+
+body {
+    margin: 0;
+    overflow: hidden; 
+    background: url("{% static 'images/index/animate-bg.jpg' %}") no-repeat center center/cover; /* Background image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    width: 120px;
+    height: 120px;
+    border: 8px solid rgba(255, 255, 255, 0.3); 
+    border-top: 8px solid #4CAF50;
+    border-radius: 50%; /* Circle shape */
+    position: relative;
+    animation: spin 2s linear infinite; 
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+.spinner i {
+    font-size: 50px; /* Icon size */
+    color: #4CAF50; /* Green icon */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="spinner">
+    <i class="fas fa-seedling"></i> 
+</div>
+
+<script>
+        setTimeout(function () {
+            window.location.href = "{% url 'home' %}";  
+        }, 3000);
+
+</script>
+
+</body>
+</html>

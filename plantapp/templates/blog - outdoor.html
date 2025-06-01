@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Plants Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        body {
+            background-color: #273c55;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .blog-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+        }
+        
+        h1, h2 {
+            color: #ecf0f1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #1abc9c;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        a:hover {
+            color: #16a085;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        td {
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .blog-card {
+            background: #3b4b5a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        img:hover {
+            transform: scale(1.1);
+        }
+            
+        .blog-container {
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+            display: flex;
+            align-items: center;
+        }
+        .back-arrow {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+            </style>
+    
+</head>
+<body>
+
+{% comment %} Header  {% endcomment %}
+<div class="blog-container">
+    <a href="{% url "blog" %}" class="back-arrow">&#8592;</a>
+</div>
+
+   
+{% comment %} content  {% endcomment %}
+
+
+{% comment %} OUT DOOR PLANT  {% endcomment %}
+
+<div class="content">
+    <h1 style="text-align:center;color:white;"><b>Outdoor Plants</b></h1>
+<br><br>
+
+<div class="container-fluid">
+
+<!-- Blog Post 13 -->
+
+<div class="row blog-card align-items-center mb-4">
+<div class="col-lg-4">
+    <img src="{% static 'images/blogs-images/rose.jpeg' %}" alt="rose" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+</div>
+
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Rose</h2>
+        <p class="para"  style="color:white;">
+            The rose is one of the most beloved and iconic flowers in the world, admired for its beauty, fragrance, and rich symbolism. Belonging to the Rosa genus in 
+            the Rosaceae family, roses are perennial flowering plants that grow in a variety of climates. With over 300 species and thousands of cultivars, roses come in 
+            a wide range of colors, including red, pink, white, yellow, orange, and purple. Each color holds a special meaning, making roses a popular choice for expressing emotions and sentiments. 
+            Their delicate petals and sweet fragrance make them a timeless symbol of love and beauty.Roses have a long history dating back thousands of years. They were cultivated by ancient
+            civilizations such as the Egyptians, Greeks, and Romans for their ornamental value and medicinal properties. In addition to their aesthetic appeal, roses are used in perfumes, cosmetics, 
+            and even culinary applications. Rose water, for example, is a popular ingredient in many cultures for its fragrance and therapeutic benefits. The rose is also a symbol of cultural and 
+            spiritual significance, representing love, purity, and honor in many traditions and religions worldwide.  
+        </p>
+</div>
+        
+<hr class="my-4">
+
+<!-- Blog Post 14-->
+
+<div class="row blog-card align-items-center mb-4">
+
+<div class="col-lg-4">
+    <img src="{% static 'images/blogs-images/hibiscus.jpeg' %}" alt="hibiscus" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+</div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Hibiscus</h2>
+        <p class="para"  style="color:white;">
+            The hibiscus is a vibrant and tropical flowering plant known for its large, colorful blooms and 
+            ornamental beauty. It belongs to the Malvaceae family and the Hibiscus genus, which includes over 200 species.
+             Hibiscus flowers thrive in warm climates and are commonly found in tropical and subtropical regions worldwide. 
+             Their striking petals and diverse colors, including red, pink, yellow, white, and orange, make them a favorite in gardens
+            and landscapes. Beyond their aesthetic appeal, hibiscus flowers hold cultural, medicinal, and culinary significance across various traditions.Hibiscus has been used for centuries for both decorative and medicinal purposes. In traditional medicine, hibiscus is known for its potential health benefits, such as lowering blood pressure, aiding digestion, and promoting overall wellness. Hibiscus tea, made from dried petals, is a popular beverage rich in antioxidants and vitamin C. In some cultures, the flower is also used in skincare products for its natural moisturizing and anti-aging properties. Additionally, the vibrant blooms are often used in dyes and hair 
+            treatments due to their nourishing qualities.
+
+        </p>
+</div>
+        
+<hr class="my-4">
+
+<!-- Blog Post 15-->
+
+<div class="row blog-card align-items-center mb-4">
+<div class="col-lg-4">
+    <img src="{% static 'images/blogs-images/marigold.jpeg' %}" alt="marigold" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+</div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Marigold</h2>
+        <p class="para"  style="color:white;">The marigold is a bright and cheerful flowering plant known for its vibrant blooms and hardy nature. It belongs to the Tagetes genus in the Asteraceae family and is native to North and South America, although it is now cultivated worldwide. Marigolds are popular in gardens due to their easy maintenance, pest-repellent properties, and continuous blooming throughout the warm seasons. 
+            They come in a range of warm hues, including yellow, orange, gold, and red, and are often associated with festivals, celebrations, and religious rituals in various cultures.
+            Marigolds are classified into several types, with African marigolds (Tagetes erecta) and French marigolds (Tagetes patula) being the most common. African marigolds have large, full blooms and are ideal for borders and landscapes, while French marigolds have smaller, delicate flowers that are perfect for containers and flower beds. Another variety, calendula (often called pot marigold), is from a different genus but shares a similar appearance and is valued for its medicinal uses.
+
+        </p>
+</div>
+        
+<hr class="my-4">
+
+<!-- Blog Post 16-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/Bougainville.jpeg' %}" alt="Bougainville" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Bougainville </h2>
+        <p class="para"  style="color:white;">Bougainvillea is a stunning, tropical plant known for its vibrant, papery bracts that surround small, delicate flowers. Native to South America, particularly Brazil, Peru, and Argentina, bougainvillea belongs to the Nyctaginaceae family. The plant is named after Louis Antoine de Bougainville, a French explorer who introduced it to Europe in the 18th century. It is widely cultivated in warm climates around the world, 
+            adorning gardens, fences, and walls with its cascading blooms in bright hues such as pink, purple, red, orange, yellow, and white.
+            Interestingly, the vivid "flowers" are actually bracts—modified leaves that protect the tiny, tube-shaped, white or cream-colored true flowers. These bracts are what give bougainvillea its striking appearance. Bougainvillea is a woody, thorny vine that can grow up to 40 feet (12 meters) tall when properly supported. It is prized not only for its beauty but also for its ability to thrive in hot, dry climates, making it a popular choice for landscaping and
+            decorative hedges.     
+        </p>
+</div>
+        
+<hr class="my-4">
+
+<!-- Blog Post 17-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/clock-plant.jpg' %}" alt="clockplant" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Clock Plant</h2>
+        <p class="para"  style="color:white;">The Clock Plant typically refers to the Four O'Clock Flower (Mirabilis jalapa), named for its unique blooming behavior. This p
+            lant is famous for its flowers that open in the late afternoon or early evening, resembling the movement of a clock. It belongs to the Nyctaginaceae family and is native to South America, though it is now grown in tropical and temperate regions worldwide.he name "Four O’Clock" comes from the plant’s habit of blooming in the late afternoon (around 4 PM) and staying open until the next morning. The flowers release a sweet, pleasant fragrance in the evening, attracting pollinators like moths and hummingbirds.The Clock Plant is easy to grow and adds beauty and fragrance to any garden, especially in the 
+             hours when it blooms.              
+         </p>
+</div>
+        
+<hr class="my-4">
+
+<!-- Blog Post 18-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/jasmin.jpg' %}" alt="jasmin" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Arabian Jasmin</h2>
+        <p class="para"  style="color:white;">Arabian Jasmine is a fragrant, evergreen shrub known for its delicate, white, star-shaped flowers. It belongs to the Oleaceae family and is native to Southeast Asia, including India, the Philippines, and Arabia. This beautiful plant is famous worldwide for its intoxicating fragrance and its use in religious ceremonies, perfumery, and tea-making. In some regions, it is called Sampaguita (the national flower of the Philippines) and Mogra in India.Arabian Jasmine is not only a beautiful ornamental plant but also holds deep cultural and spiritual significance worldwide. With its exquisite fragrance and easy-to-grow nature, 
+            it remains a favorite in gardens and homes.
+                
+        </p>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

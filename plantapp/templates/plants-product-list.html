@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Product List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="container mt-5">
+    <!-- Back Arrow Button -->
+    <div class="mb-4">
+        <a href="{% url 'sellerhome' %}" class="btn btn-link">
+            <i class="bi bi-arrow-left-circle"></i> Back to Seller Home
+        </a>
+    </div>
+
+    <h2 class="mb-4">New Plants List</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price (₹)</th>
+                <th>Delivery Charge (₹)</th>
+                <th>Protection Fee (₹)</th>
+                <th>Company Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in plants %}
+            <tr>
+                <!-- Display Plant Image -->
+                <td>
+                    {% if product.plant_image %}
+                        <img src="{{ product.plant_image.url }}" alt="{{ product.plant_name }}" style="width: 100px; height: auto;">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+
+                <!-- Product Information -->
+                <td>{{ product.plant_name }}</td>
+                <td>{{ product.plant_category }}</td>
+                <td>{{ product.plant_size }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.delivery_charge }}</td>
+                <td>{{ product.protection_fee|default:"0" }}</td>
+                <td>{{ product.seller.company_name }}</td> 
+
+                <!-- Update and Delete Buttons -->
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'update_plant' product.id %}" class="btn btn-warning btn-sm">Update</a>
+                        <form action="{% url 'delete_plant' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="11" class="text-center">No products available.</td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

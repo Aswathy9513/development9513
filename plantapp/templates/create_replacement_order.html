@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Replacement Request</title>
+</head>
+<body>
+    <h2>Replacement Request for {{ plant.name }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="reason">Reason for Replacement:</label>
+        <textarea id="reason" name="reason"></textarea>
+
+        <label for="image">Upload Image (if applicable):</label>
+        <input type="file" id="image" name="image">
+
+        <button type="submit">Submit Replacement Request</button>
+    </form>
+</body>
+</html>

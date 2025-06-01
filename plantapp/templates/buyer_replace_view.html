@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders and Replacement Requests</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom styles for table */
+        table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #e9ecef;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .my-4 {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: black; /* Changed heading color to black */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: black; /* Changed heading color to black */
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Custom styles for specific columns */
+        .product-name, .order-id, .payment-status, .reason, .replacement-status, .reorder-status {
+            background-color: black;
+            color: white;
+        }
+
+        /* Home icon styling */
+        .home-icon {
+            font-size: 30px;
+            color: #007bff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .home-icon:hover {
+            color: #0056b3;
+        }
+        .plant-image {
+            max-width: 80px; /* Adjust width */
+            max-height: 80px; /* Adjust height */
+            border-radius: 8px;
+            object-fit: cover; /* Ensures the image fits within the size */
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <!-- Home Icon Link -->
+        <a href="{% url 'buyer_orders' %}" class="home-icon">
+            <i class="fas fa-home"></i>Back to  Product
+        </a>
+
+
+
+<h2>Your Replacement Requests</h2>
+
+<div class="container my-4">
+    <h1 class="mb-4">Replacement Requests</h1>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image Of Product</th>
+                <th>Replacement Order ID</th>
+                <th>Product</th>
+                <th>Reason for Replacement</th>
+                <th>Replacement Status</th>
+                <th>Reorder Status</th>
+                <th>Defect Of Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for replacement in replacement_requests %}
+                <tr>
+                    <td class="image-container">
+                        {% if replacement.product.plant_image %}
+                            <img src="{{ replacement.product.plant_image.url }}" alt="Replacement Image" class="plant-image">
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ replacement.order.order_id }}</td>
+                    <td>{{ replacement.product.plant_name }}</td>
+                    <td>{{ replacement.reason }}</td>
+                    <td><span class="badge bg-info">{{ replacement.replacement_status }}</span></td>
+                    <td><span class="badge bg-warning">{{ replacement.reorder_status }}</span></td>
+                    <td class="image-container">
+                        {% if replacement.replacement_image %}
+                            <img src="{{ replacement.replacement_image.url }}" alt="Replacement Image" class="replacement-image" style="width: 60px; height: 60px; object-fit: cover;">
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

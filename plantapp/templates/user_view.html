@@ -1,0 +1,142 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .profile-table th, .profile-table td {
+            vertical-align: middle;
+        }
+        .profile-table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-table thead {
+            background-color: #007bff;
+            color: white;
+        }
+        .profile-table tbody tr {
+            background-color: #f8f9fa;
+        }
+        .profile-table tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .profile-header {
+            margin-bottom: 30px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 20px;
+            font-size: 14px;
+            width: auto;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .card-header {
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .alert-danger {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .update-btn-container {
+            display: flex;
+            justify-content: flex-start;
+        }
+        .back-btn-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="back-btn-container">
+        {% if user_profile.role == 'seller' %}
+        <a href="{% url 'sellerhome' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Seller Home
+        </a>
+        {% elif user_profile.role == 'buyer' %}
+        <a href="{% url 'buyerhome' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Buyer Home
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="profile-header">
+        <h2 class="text-center text-primary">User Profile</h2>
+    </div>
+
+    {% if user_profile is not None %}
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-bordered table-striped profile-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Full Name</strong></td>
+                        <td>{{ user_profile.full_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>{{ user_profile.email }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phone Number</strong></td>
+                        <td>{{ user_profile.phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Address</strong></td>
+                        <td>{{ user_profile.address }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gender</strong></td>
+                        <td>{{ user_profile.gender }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Country</strong></td>
+                        <td>{{ user_profile.country }}</td>
+                    </tr>
+                    {% if user_profile.role == "seller" %}
+                    <tr>
+                        <td><strong>Company Name</strong></td>
+                        <td>{{ user_profile.company_name }}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="update-btn-container">
+                <a href="{% url 'update_user' %}" class="btn btn-custom"><i class="fas fa-edit"></i> Update Profile</a>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="alert alert-danger">
+        <p>No user profile found.</p>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

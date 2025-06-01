@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Plants Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        body {
+            background-color: #273c55;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .blog-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+        }
+        
+        h1, h2 {
+            color: #ecf0f1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #1abc9c;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        a:hover {
+            color: #16a085;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        td {
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .blog-card {
+            background: #3b4b5a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        img:hover {
+            transform: scale(1.1);
+        }
+        .blog-container {
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+            display: flex;
+            align-items: center;
+        }
+        .back-arrow {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+            </style>
+    
+</head>
+<body>
+
+{% comment %} Header  {% endcomment %}
+<div class="blog-container">
+    <a href="{% url "blog" %}" class="back-arrow">&#8592;</a>
+</div>
+
+<br><br>
+   
+{% comment %} content  {% endcomment %}
+
+
+
+{% comment %} START INDOOR PLANT SECTION  {% endcomment %}
+    
+<div class="content">
+    <h1 style="text-align:center;color:white;"><b>Indoor Plants</b></h1>
+<br><br>
+
+<div class="container-fluid">
+
+<!-- Blog Post 7 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/bamboo.jpg' %}" alt="Bamboo" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Bamboo</h2>
+        <p class="para"  style="color:white;">Bamboos are a diverse group of mostly evergreen, perennial flowering plants in the subfamily Bambusoideae of the grass family Poaceae. 
+            Giant bamboos are the largest members of the grass family—Dendrocalamus sinicus can grow up to 46 meters (151 ft) tall, with culms reaching 36 centimeters (14 in) in thickness 
+            and weighing up to 450 kilograms (1,000 lb). Some bamboos have remarkably long internodes; Kinabaluchloa wrayi has internodes up to 2.5 meters (8 ft), while Arthrostylidium 
+            schomburgkii reaches 5 meters (16 ft)—exceeded only by papyrus. In contrast, the tiny bamboo Raddiella vanessiae from French Guiana has stalks measuring just 10–20 millimeters 
+            (0.4–0.8 in) long and 2 millimeters (0.08 in) wide. The word "bamboo" likely originates from Malay or Kannada, borrowed into Dutch or Portuguese.
+        </p>
+    </div>
+
+<hr class="my-4">
+
+<!-- Blog Post 8-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/spider-plant.jpg' %}" alt="spider plant" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Spider Plant</h2>
+            <p class="para"  style="color:white;">
+                The spider plant (Chlorophytum comosum) is a hardy, evergreen perennial in the Asparagaceae family, native to South Africa. It is a popular indoor houseplant known for its arching leaves and spider-like offshoots,
+                 called pups or plantlets, which dangle from the mother planSpider plants have narrow, strap-shaped leaves that are typically green with white or cream stripes. They grow 30–60 cm (12–24 inches) tall and produce small white flowers on long stems.
+                They thrive in bright, indirect light but can tolerate low-light conditions. Spider plants prefer well-draining soil and need to be watered moderately, allowing the top layer of soil to dry between waterings. They are drought-tolerant and easy to propagate through their pups.                       
+                Known for their air-purifying properties, spider plants can remove indoor pollutants like carbon monoxide and formaldehyde, making them a favorite for both beginners and experienced plant enthusiasts.
+                        
+            </p>
+    </div>
+<hr class="my-4">
+
+<!-- Blog Post 9-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/snake-plant.jpg' %}" alt="snake plant" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Snake Plant</h2>
+            <p class="para" style="color:white;">
+                        The snake plant (Dracaena trifasciata, formerly Sansevieria trifasciata) is a hardy, evergreen perennial in the Asparagaceae family, native to West Africa. It is also known as mother-in-law’s tongue due to its 
+                        long, pointed leaves.Snake plants have upright, sword-shaped leaves that can grow 30 cm to 1.2 meters (1 to 4 feet) tall. The leaves are typically green with gray-green horizontal stripes, though some varieties have yellow edges.
+                        They are extremely low-maintenance, thriving in low to bright indirect light and tolerating irregular watering. Snake plants prefer well-draining soil and should be watered sparingly, allowing the soil to dry between waterings to prevent root rot.
+                        Renowned for their air-purifying abilities, snake plants filter toxins like formaldehyde and benzene, making them popular indoor plants. They are drought-tolerant, resilient, and ideal for beginners due to their adaptability and ease of care
+                       
+            </p>
+    </div>
+<hr class="my-4">
+                 
+<!-- Blog Post 10-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/peace-lily.jpg' %}" alt="peace plant" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Peace Lily</h2>
+            <p class="para"  style="color:white;">
+                Spathiphyllum is a genus of about 60 species of monocotyledonous flowering plants in the Araceae family, native to tropical regions of the
+                 Americas and southeastern Asia. Commonly known as spath or peace lilies, these evergreen herbaceous perennials have large leaves (12–65 cm long 
+                 and 3–25 cm wide) and produce flowers on a spadix, surrounded by a spathe (10–30 cm long) in white, yellowish, or greenish hues. They are often
+                  grown as houseplants due to their ability to thrive with minimal light and water but can also grow outdoors in hot, humid environments.
+            </p>
+    </div>
+<hr class="my-4">
+
+<!-- Blog Post 11-->
+
+ <div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/violet.jpg' %}" alt="african violet" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">African Violet</h2>
+        <p class="para"  style="color:white;">
+            African violet (Saintpaulia) is a genus of small, herbaceous perennial plants in the Gesneriaceae family, native to the eastern tropical regions of Africa, particularly Tanzania and Kenya. They are popular as indoor houseplants due to their attractive, velvety leaves and vibrant flowers.
+            African violets typically have dark green, rounded leaves covered in fine hairs, giving them a soft texture. Their flowers bloom in shades of purple, blue, pink, white, or bi-colored, often with five petals arranged in a star shape. They thrive in indirect light, moderate humidity, and well-draining soil, requiring careful watering to avoid root rot.
+
+        </p>
+    </div>
+<hr class="my-4">
+
+<!-- Blog Post 12-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/rubber-plant.jpg' %}" alt="rubber plant" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Rubber Plant</h2>
+        <p class="para"  style="color:white;">
+            The rubber plant (Ficus elastica) is a species of evergreen tropical tree in the Moraceae family, native to Southeast Asia. It is widely grown as an ornamental houseplant due to its large, glossy leaves and low-maintenance nature.
+            Rubber plants can grow up to 30–40 meters (100–130 feet) tall in the wild but typically reach 1–3 meters (3–10 feet) indoors. Their leaves are broad, oval-shaped, and range in color from deep green to burgundy, with new growth often emerging as reddish sheaths.
+            thrive in bright, indirect light but can tolerate low-light conditions. Rubber plants prefer well-draining soil and moderate watering—allowing the topsoil to dry between waterings. They are also known for their ability to purify indoor air by removing toxins.
+            With proper care, the rubber plant is a long-living, resilient houseplant that adds a touch of greenery to indoor spaces.
+           
+        </p>
+</div>
+</div>
+</div>
+<br>
+{% comment %} OUT DOOR PLANT  {% endcomment %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Plants Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        body {
+            background-color: #273c55;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .blog-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+        }
+        
+        h1, h2 {
+            color: #ecf0f1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #1abc9c;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        a:hover {
+            color: #16a085;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        td {
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .blog-card {
+            background: #3b4b5a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        img:hover {
+            transform: scale(1.1);
+        }
+        .blog-container {
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+            display: flex;
+            align-items: center;
+        }
+        .back-arrow {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+            
+            </style>
+    
+</head>
+<body>
+
+{% comment %} Header  {% endcomment %}
+<div class="blog-container">
+    <a href="{% url "blog" %}" class="back-arrow">&#8592;</a>
+</div>
+
+<br><br>
+   
+{% comment %} content  {% endcomment %}
+
+<div class="content">
+    <h1 style="text-align:center;color:white;"><b>Medicinal Plants</b></h1>
+<br>
+    <div class="container-fluid">
+
+<!-- Blog Post 1 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/alovera.jpeg' %}" alt="Aloe Vera" class="img-fluid rounded" style="width:200px;height: 250px; object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+         <h2 class="fw-bold" style="text-align:center;color:white;">Aloe Vera</h2>
+            <p class="para" style="color:white;">Aloe vera is a succulent plant species of the genus Aloe, widely distributed and considered
+                an invasive species in many world regions. It is an evergreen perennial originating from the Arabian Peninsula but 
+                also grows wild in tropical, semi-tropical, and arid climates worldwide. Cultivated mainly for commercial products,
+                it has been used for centuries as a topical treatment. Aloe vera is also popular as a decorative indoor plant. 
+                Its leaves contain acemannan, a polysaccharide gel used for topical applications, and aloin, a toxic compound.
+                Aloe vera products, typically made from the gel, are used in skin lotions, cosmetics, ointments, 
+                and gels to treat minor burns, skin abrasions, insect bites, and windburn. However, oral ingestion of 
+                aloe vera extracts may cause acute abdominal pain, cramps, and hepatitis if consumed chronically, and 
+                it should not be used during pregnancy. Some people may experience allergic reactions when using 
+                aloe vera on the skin.</p>
+</div>
+
+{% comment %} horizontal line  {% endcomment %}
+<hr class="my-4">
+</div>
+
+<!-- Blog Post 2 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/tulsi.jpeg' %}" alt="Tulsi" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 class="fw-bold" style="text-align:center;color:white;">Tulsi</h2>
+            <p class="para"  style="color:white;">Tulsi has deep roots in Ayurveda, dating back thousands of years in ancient texts such as Charaka Samhita and 
+                        Sushruta Samhita. Revered as the "Queen of Herbs" in the Ayurvedic tradition, Tulsi holds not only medicinal 
+                        value but also cultural and religious significance in India. It is considered sacred in Hinduism and is often found 
+                        growing in temple courtyards and homes across the country. Tulsi has a wide range of traditional uses in Ayurvedic medicine,
+                         ranging from treating respiratory ailments and digestive problems to promoting longevity and spiritual well-being. Its holistic
+                        approach to health emphasizes the interrelationship of mind, body, and spirit, aligned with Ayurvedic 
+                        principles of balance and harmony.Tulsi is considered an effective remedy for respiratory ailments like cough, 
+                        cold and asthma. Its expectorant and bronchodilator properties help clear congestion, soothe inflamed airways, and facilitate breathing. Whether made into a soothing tea or inhaled as a vapor, basil provides natural relief for respiratory discomfort.
+            </p> 
+
+    </div>
+
+<hr class="my-4">
+</div>
+            
+<!-- Blog Post 3 -->
+
+<div class="row blog-card align-items-center mb-4">
+     <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/tumeric.jpeg' %}" alt="Turmeric" class="img-fluid rounded" style="width:200px;height: 250px; object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Tumeric</h2>
+            <p class="para"  style="color:white;">Turmeric, or Curcuma longa, is a flowering plant in the ginger family Zingiberaceae.
+                         It is a perennial, rhizomatous, herbaceous plant native to the Indian subcontinent and Southeast Asia, thriving in temperatures between 20 and 30 °C 
+                        (68 and 86 °F) with high annual rainfall.The plant’s rhizomes are harvested annually, with some preserved for future
+                         cultivation and others processed for consumption.The rhizomes can be used fresh or are boiled and dried before being ground into a deep orange-yellow powder.
+                        This powder is widely used as a coloring and flavoring agent in many Asian cuisines, particularly for curries. 
+                        Turmeric is also valued for its dyeing properties due to its main active compound, curcumin. It has a warm, bitter, black pepper-like taste with an earthy, 
+                        mustard-like aroma.Curcumin, the bright yellow chemical in turmeric, is recognized and approved as a food additive by international health organizations.
+                         While turmeric has a long history of use in Ayurvedic medicine, there is no conclusive scientific evidence proving its effectiveness in treating any medical condition.
+            </p>
+
+    </div>
+
+<hr class="my-4">
+</div>
+
+<!-- Blog Post 4 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/neem.jpeg' %}" alt="Neem" class="img-fluid rounded" style="width:200px;height: 250px; object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Neem</h2>
+            <p  style="color:white;">Margosa is a fast-growing, evergreen tree that typically reaches a height of 15–20 meters (49–66 ft) and occasionally grows up to 35–40 meters (115–131 ft). 
+                        It has wide, spreading branches and a dense, roundish crown with a diameter of 20–25 meters (66–82 ft). The pinnate leaves are 20–40 cm (8–16 in) long, with 20 to 30 
+                        dark green leaflets measuring 3–8 cm (1¼–3¼ in) in length.The tree produces white, fragrant flowers in drooping clusters (panicles) up to 25 cm (10 in) long, with each inflorescence 
+                        bearing 250 to 300 flowers. The fruit is a smooth, olive-like drupe that varies in shape from oval to round and, when ripe,
+                        measures 14–28 mm (½–1⅛ in) by 10–15 mm (⅜–⅝ in). It has a thin outer skin, a yellowish-white fibrouspulp, and a hard inner shell enclosing one to 
+                        three elongated seeds.
+            </p>
+
+    </div>
+<hr class="my-4">
+</div>
+
+<!-- Blog Post 5 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/mint.jpeg' %}" alt="Neem" class="img-fluid rounded" style="width:200px;height: 250px; object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Peppermint</h2>
+            <p class="para"  style="color:white;">Peppermint (Mentha × piperita) is a hybrid mint species, resulting from a cross 
+                        between watermint and spearmint.Native to Europe and the Middle East, it is now widely cultivated across the world and 
+                        occasionally found growing with its parent species in the will.Among the more than 25 species in the Mentha genus, peppermint is 
+                        the most commonly used. Western peppermint is derived from Mentha × piperita, while Chinese peppermint, known as "bohe," comes from Mentha haplocalyx. Both species are valued for producing menthol and 
+                        menthone and have a long history of use in culinary and medicinal applications.Peppermint oil is being studied for its potential as a short-term treatment for irritable bowel syndrome and is traditionally used for relieving minor ailments. When applied topically, peppermint oil and leaves produce a cooling effect that may help alleviate muscle pain, nerve pain, and itching, while also being used as a fragrance. However, high oral doses of peppermint oil (500 mg) may cause mucosal irritation and mimic heartburn.
+            </p>
+
+    </div>
+<hr class="my-4">
+</div>
+
+<!-- Blog Post 6 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/coriander.jpeg' %}" alt="Neem" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+    <div class="col-lg-8">
+        <h2 style="text-align:center;color:white;">Coriander</h2>
+            <p class="para"  style="color:white;">Coriander is an annual herb in the Apiaceae family, widely cultivated for its leaves and seeds. 
+                        It is native to regions spanning Southern Europe, Northern Africa, and Southwestern Asia. Both the fresh leaves (commonly known as cilantro in some regions) 
+                        and the dried seeds are used in culinary applications worldwide.The plant grows up to 50 cm (20 inches) tall with slender, hollow stems and delicate, bright green leaves. 
+                        The leaves vary in shape, with lower leaves being broad-lobed and upper leaves appearing more finely dissected. It produces small, pale pink or white flowers that bloom in umbrella-shaped clusters. The seeds are small, round, and yellow-brown with a warm,
+                        citrusy flavor when dried.Coriander has been traditionally used for digestive health, helping to relieve indigestion, bloating, and gas. Its antioxidant properties may support immune health, and coriander seed oil is sometimes used in aromatherapy for its calming effects.
+            </p>
+    </div>
+<hr class="my-4">
+</div>
+
+</div>
+</div>
+ {% comment %} END OF MEDICINAL PLANT SECTIOPN {% endcomment %}
+
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

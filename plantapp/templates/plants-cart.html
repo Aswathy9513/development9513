@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Plants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .category-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
+        .btn {
+            font-size: 1rem;
+            padding: 8px 15px;
+            width: 130px;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-disabled {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            cursor: not-allowed;
+        }
+        .container-fluid {
+            background-image: url("{% static 'images/plants-flowers/buying-images-bg.jpg' %}");
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .container-fluid h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+        }
+        /* Cart Icon Styling */
+        .cart-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+        .cart-icon:hover {
+            color: #00d2d2;
+        }
+        /* Home Icon Styling */
+        .home-icon {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 25px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 8px;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+        .home-icon:hover {
+            color: #00d2d2;
+        }
+        /* Search Bar */
+        .search-bar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <a href="{% url 'buyerhome' %}" class="home-icon">
+            <i class="bi bi-house"></i> Home
+        </a>
+        <h1><b>Plant Product List</b></h1>
+    </div>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" class="form-control search-bar" placeholder="Search by Category or Size...">
+
+    <!-- Cart Icon -->
+    <a href="{% url 'view_cart' %}" class="cart-icon">
+        <i class="bi bi-cart"></i>
+    </a>
+
+    <br><br><br><br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="category-section">
+                    <h4>Categories</h4>
+                    <ul class="category-list">
+                        <li>Indoor Plants (<span id="indoor-count">0</span>)</li>
+                        <li>Outdoor Plants (<span id="outdoor-count">0</span>)</li>
+                        <li>Medicinal Plants (<span id="medicinal-count">0</span>)</li>
+                        <li>Fertilizers (<span id="fertilizers-count">0</span>)</li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="row" id="productList">
+                    {% for product in plants %}
+                    <div class="col-lg-4 col-md-6 mb-4 product-card" data-category="{{ product.plant_category|lower }}" data-size="{{ product.plant_size|lower }}">
+                        <div class="card shadow-sm">
+                            {% if product.plant_image %}
+                                <img src="{{ product.plant_image.url }}" class="card-img-top" alt="{{ product.plant_name }}">
+                            {% else %}
+                                <div class="no-image-placeholder">No Image Available</div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.plant_name }}</h5>
+                                <p><strong>Category:</strong> {{ product.plant_category }}</p>
+                                <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+                                <p>
+                                    <strong>Size:</strong> {{ product.plant_size }}<br>
+                                    <strong>Price:</strong> ₹{{ product.price }}<br>
+                                    <strong>Company:</strong> {{ product.seller.company_name }}<br>
+                                    <strong>Delivery Charge:</strong> ₹{{ product.delivery_charge }}<br>
+                                    <strong>Protection Fee:</strong> ₹{{ product.protection_fee|default:"0" }}<br>
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    {% if product.quantity > 0 %}
+                                        <form method="POST" action="{% url 'add-to-cart' product.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success">Add to Cart</button>
+                                        </form>
+                                        <form action="{% url 'buy_now' product.id %}" method="get">
+                                            <button type="submit" class="btn btn-primary">Buy Now</button>
+                                        </form>
+                                    {% else %}
+                                        <button class="btn btn-disabled" disabled>Out of Stock</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12 text-center"><p>No products available.</p></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let query = this.value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(function(card) {
+                let category = card.dataset.category.toLowerCase();
+                let size = card.dataset.size.toLowerCase();
+                card.style.display = (category.includes(query) || size.includes(query)) ? 'block' : 'none';
+            });
+        });
+
+        
+            function updateCategoryCounts() {
+                let categories = {
+                    indoor: 0,
+                    outdoor: 0,
+                    medicinal: 0,
+                    fertilizers: 0
+                };
+        
+                document.querySelectorAll('.product-card').forEach(function(card) {
+                    if (card.style.display !== 'none') {
+                        let category = card.dataset.category.toLowerCase();
+                        if (categories.hasOwnProperty(category)) {
+                            categories[category]++;
+                        }
+                    }
+                });
+        
+                document.getElementById('indoor-count').innerText = categories.indoor;
+                document.getElementById('outdoor-count').innerText = categories.outdoor;
+                document.getElementById('medicinal-count').innerText = categories.medicinal;
+                document.getElementById('fertilizers-count').innerText = categories.fertilizers;
+            }
+        
+            document.getElementById('searchInput').addEventListener('keyup', function() {
+                let query = this.value.toLowerCase();
+                document.querySelectorAll('.product-card').forEach(function(card) {
+                    let category = card.dataset.category.toLowerCase();
+                    let size = card.dataset.size.toLowerCase();
+                    if (category.includes(query) || size.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+        
+                // Update counts after filtering
+                updateCategoryCounts();
+            });
+        
+            // Initial count update on page load
+            window.onload = updateCategoryCounts;
+        
+        
+    </script>
+</body>
+</html>

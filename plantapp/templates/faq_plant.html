@@ -1,0 +1,345 @@
+{% load static %}  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ + WhatsApp-Like Floating Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    .faq-container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+    }
+
+    .faq-question span {
+      font-size: 24px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      display: none;
+      padding-left: 34px;
+      padding-top: 10px;
+      color: #333;
+    }
+
+    .faq-question.active span {
+      transform: rotate(45deg);
+    }
+
+    /* Floating Chat Icon */
+    .chat-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    /* Chatbox Styling */
+    .chatbox {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      padding: 15px;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      height: 400px;
+    }
+
+    .chatbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .chatbox-header h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #25D366;
+    }
+
+    .chat-messages {
+      flex: 1;
+      max-height: 250px;
+      overflow-y: auto;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      display: flex;
+      max-width: 80%;
+    }
+
+    .message.bot {
+      justify-content: flex-start;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .chat-bubble {
+      padding: 10px;
+      border-radius: 15px;
+      max-width: 70%;
+    }
+
+    .message.bot .chat-bubble {
+      background-color: #e4e6eb;
+      color: #333;
+    }
+
+    .message.user .chat-bubble {
+      background-color: #25D366;
+      color: white;
+      text-align: right;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 5px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .chat-input button {
+      padding: 8px 12px;
+      border: none;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+
+   <!-- Header Section -->
+   <header class="blog-header d-flex justify-content-between align-items-center p-3">    
+     
+    <a href="{% if user.is_authenticated %}{% url 'buyerhome' %}{% else %}{% url 'home' %}{% endif %}" class="home-link">
+        <i class="bi bi-house-door-fill"></i> Home
+    </a>
+</header>
+
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <br><br><br><br>
+
+  <!-- FAQ Section -->
+  <div class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question"><span>+</span> What is your return policy?</div>
+      <div class="faq-answer">We accept returns within 30 days of delivery.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><span>+</span> Do you ship internationally?</div>
+      <div class="faq-answer">Yes, we ship worldwide with extra charges.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><span>+</span> How do I track my order?</div>
+      <div class="faq-answer">You’ll receive a tracking link via email once shipped.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><span>+</span> How do I cancel my order?</div>
+      <div class="faq-answer">You can cancel your order within 24 hours of placing it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"><span>+</span> What payment methods do you accept?</div>
+      <div class="faq-answer">We accept Card payment and Cash on Delivery.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question"><span>+</span> How do I contact customer support?</div>
+        <div class="faq-answer">You can reach our customer support via the "Contact Us" page or email us at support@example.com.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question"><span>+</span> Are the plants safe for pets?</div>
+        <div class="faq-answer">Yes, all our plants are pet-friendly. However, please check the plant description for any specific warnings regarding pets.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question"><span>+</span> Can I change my shipping address after placing an order?</div>
+        <div class="faq-answer">If your order hasn’t been shipped yet, we can change the address. Please contact customer support immediately.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question"><span>+</span> Do you offer gift cards?</div>
+        <div class="faq-answer">Yes, we offer digital gift cards in various denominations. You can purchase them through our website.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question"><span>+</span> How do I apply a discount code?</div>
+        <div class="faq-answer">During checkout, enter your discount code in the "Promo Code" section to apply the discount to your order.</div>
+      </div>
+      
+  </div>
+
+  
+  <!-- Floating Chat Icon -->
+  <button class="chat-icon" onclick="toggleChat()">💬</button>
+
+  <!-- Chatbox -->
+  <div class="chatbox" id="chatbox">
+    <div class="chatbox-header">
+      <h3>Chat</h3>
+      <button onclick="toggleChat()">✖</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        faqItems.forEach(i => {
+          if (i !== item) {
+            i.querySelector('.faq-answer').style.display = 'none';
+            i.querySelector('.faq-question').classList.remove('active');
+            i.querySelector('.faq-question span').textContent = '+';
+          }
+        });
+
+        const answer = item.querySelector('.faq-answer');
+        const question = item.querySelector('.faq-question');
+        const icon = question.querySelector('span');
+
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+          question.classList.remove('active');
+          icon.textContent = '+';
+        } else {
+          answer.style.display = 'block';
+          question.classList.add('active');
+          icon.textContent = '×';
+        }
+      });
+    });
+
+    function toggleChat() {
+      const chatbox = document.getElementById('chatbox');
+      chatbox.style.display = (chatbox.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      const messages = document.getElementById('chatMessages');
+
+      if (msg !== '') {
+        const userMsg = document.createElement('div');
+        userMsg.classList.add('message', 'user');
+        const userBubble = document.createElement('div');
+        userBubble.classList.add('chat-bubble');
+        userBubble.textContent = msg;
+        userMsg.appendChild(userBubble);
+        messages.appendChild(userMsg);
+
+        setTimeout(() => {
+          const reply = document.createElement('div');
+          reply.classList.add('message', 'bot');
+          const botBubble = document.createElement('div');
+          botBubble.classList.add('chat-bubble');
+          botBubble.textContent = 'Bot: ' + autoReply(msg);
+          reply.appendChild(botBubble);
+          messages.appendChild(reply);
+          messages.scrollTop = messages.scrollHeight;
+        }, 500);
+
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+      }
+    }
+
+    function autoReply(question) {
+        const lower = question.toLowerCase();
+      
+        if (lower.includes('what about return')) return 'We accept returns within 30 days of delivery.';
+        if (lower.includes('ship') || lower.includes('international')) return 'Yes, we ship worldwide with extra charges.';
+        if (lower.includes('track')) return 'Tracking info will be emailed once the order is shipped.';
+        if (lower.includes('cancel')) return 'You can cancel your order within 24 hours.';
+        if (lower.includes('payment')) return 'We accept Google Pay, PhonePe, UPI, and COD.';
+        if (lower.includes('address')) return 'You can change your shipping address before the order is shipped by contacting customer support.';
+        if (lower.includes('gift card')) return 'Yes, we offer digital gift cards in various denominations. Purchase them through our website.';
+        if (lower.includes('discount code')) return 'Enter your discount code at checkout in the "Promo Code" section to apply it.';
+        if (lower.includes('contact support')) return 'You can reach us at support@example.com or via the "Contact Us" page.';
+        if (lower.includes('pets')) return 'Yes, our plants are pet-friendly. However, check the product description for any specific warnings about pets.';
+      
+        return 'Sorry, I didn\'t get that. Please check our FAQ above or contact support.';
+      }
+      
+      
+  </script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Products</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet"> <!-- Added Bootstrap Icons -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        /* Style the table */
+        .table {
+            border: 1px solid #dee2e6;
+            border-collapse: collapse; /* Collapse the borders between table cells */
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px 12px; /* Add padding for spacing */
+            border: 1px solid #dee2e6; /* Add borders to table cells */
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            height: calc(1.5em + 0.75rem + 2px);
+        }
+
+        .form-group select {
+            border-radius: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .replacement-image {
+            max-width: 100px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-image {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* Style for the Home icon */
+        .home-icon {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .home-icon:hover {
+            text-decoration: none;
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <!-- Home icon link -->
+        <a href="{% url 'sellerhome' %}" class="home-icon">
+            <i class="bi bi-house-door-fill"></i> <!-- Home icon from Bootstrap Icons -->
+        </a> {% endcomment %}
+
+        {% comment %} <h1 class="mb-4">My Products</h1>
+
+        <!-- Orders Section -->
+        <h2 class="mb-3">Orders</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Buyer Name</th>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.buyer.full_name }}</td>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.plant.plant_name }}</td>
+                        <td>{{ order.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> {% endcomment %}
+
+        <!-- Replacement Requests Section -->
+        {% comment %} <h2 class="mb-3">Replacement Requests</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Buyer Name</th>
+
+                    <th>Replacement Order ID</th>
+                    <th>Product</th>
+                    <th>Replacement Status</th>
+                    <th>Reorder Status</th>
+                    <th>Image</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for replacement in replacement_requests %}
+                    <tr>
+                        <td>{{ replacement.buyer.full_name }}</td>
+
+                        <td>{{ replacement.order.order_id }}</td>
+                        <td>{{ replacement.product.plant_name }}</td>
+                        <td>{{ replacement.replacement_status }}</td>
+                        <td>{{ replacement.reorder_status }}</td>
+                        <!-- Display the image if it exists -->
+                        <td class="image-container">
+                            {% if replacement.replacement_image %}
+                                <img src="{{ replacement.replacement_image.url }}" alt="Replacement Image" class="replacement-image">
+                            {% else %}
+                                <span class="no-image">No Image</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="POST" action="{% url 'update_replacement_status' replacement.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="replacement_status">Replacement Status:</label>
+                                    <select class="form-control" name="replacement_status" id="replacement_status">
+                                        <option value="Pending" {% if replacement.replacement_status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Approved" {% if replacement.replacement_status == 'Approved' %}selected{% endif %}>Approved</option>
+                                        <option value="Rejected" {% if replacement.replacement_status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reorder_status">Reorder Status:</label>
+                                    <select class="form-control" name="reorder_status" id="reorder_status">
+                                        <option value="Pending" {% if replacement.reorder_status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Completed" {% if replacement.reorder_status == 'Completed' %}selected{% endif %}>Completed</option>
+                                        
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Status</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html> 
+
+
+ {% endcomment %}
+
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Products</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        .table {
+            border: 1px solid #dee2e6;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .replacement-image {
+            max-width: 100px;
+            height: auto;
+            border-radius: 8px;
+        }
+        .plant-image {
+    max-width: 80px; /* Adjust width */
+    max-height: 80px; /* Adjust height */
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the image fits within the size */
+}
+.plant-image {
+    max-width: 80px; /* Adjust width */
+    max-height: 80px; /* Adjust height */
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the image fits within the size */
+}
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <a href="{% url 'sellerhome' %}" class="home-icon">
+            <i class="bi bi-house-door-fill"></i>
+        </a>
+
+        <h2 class="mb-3">Replacement Requests</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product Image</th>
+
+                    <th>Buyer Name</th>
+                    <th>Replacement Order ID</th>
+                    <th>Product</th>
+                    <th>Reason For Replacement</th>
+
+                    <th>Replacement Status</th>
+                    <th>Reorder Status</th>
+                    <th>Defect Of Image</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for replacement in replacement_requests %}
+                    <tr>
+                        <td class="image-container">
+                            {% if replacement.product.plant_image %}
+                                <img src="{{ replacement.product.plant_image.url }}" alt="Replacement Image" class="plant-image">
+                            {% else %}
+                                <span class="no-image">No Image</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ replacement.buyer.full_name }}</td>
+                        <td>{{ replacement.order.order_id }}</td>
+                        <td>{{ replacement.product.plant_name }}</td>
+                        <td>{{ replacement.reason }}</td>
+
+                        <td>{{ replacement.replacement_status }}</td>
+                        <td>{{ replacement.reorder_status }}</td>
+                        <td class="image-container">
+                            {% if replacement.replacement_image %}
+                                <img src="{{ replacement.replacement_image.url }}" alt="Replacement Image" class="replacement-image">
+                            {% else %}
+                                <span class="no-image">No Image</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="POST" action="{% url 'update_replacement_status' replacement.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="replacement_status">Replacement Status:</label>
+                                    <select class="form-control" name="replacement_status" id="replacement_status">
+                                        <option value="Pending" {% if replacement.replacement_status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Approved" {% if replacement.replacement_status == 'Approved' %}selected{% endif %}>Approved</option>
+                                        <option value="Rejected" {% if replacement.replacement_status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reorder_status">Reorder Status:</label>
+                                    <select class="form-control" name="reorder_status" id="reorder_status">
+                                        <option value="Pending" {% if replacement.reorder_status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Replaced" {% if replacement.reorder_status == 'Replaced' %}selected{% endif %}>Replaced</option>
+                                        <option value="Shipped" {% if replacement.reorder_status == 'Shipped' %}selected{% endif %}>Shipped</option>
+                                        <option value="Delivered" {% if replacement.reorder_status == 'Delivered' %}selected{% endif %}>Delivered</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Status</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

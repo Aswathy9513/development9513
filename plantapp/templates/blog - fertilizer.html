@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Plants Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        body {
+            background-color: #273c55;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .blog-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+        }
+        
+        h1, h2 {
+            color: #ecf0f1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #1abc9c;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        a:hover {
+            color: #16a085;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        td {
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .blog-card {
+            background: #3b4b5a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        img:hover {
+            transform: scale(1.1);
+        }
+        .blog-container {
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 4px solid #16a085;
+            display: flex;
+            align-items: center;
+        }
+        .back-arrow {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+            
+            </style>
+    
+</head>
+<body>
+
+{% comment %} Header  {% endcomment %}
+<div class="blog-container">
+    <a href="{% url "blog" %}" class="back-arrow">&#8592;</a>
+</div>
+
+<br><br>
+   
+{% comment %} content  {% endcomment %}
+<div class="content">
+    <h1 style="text-align:center;color:white;"><b>Fertilizers</b></h1>
+<br><br>
+
+<div class="container-fluid">
+
+    <!-- Blog Post 19 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/organic.png' %}" alt="organic" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Organic Fertilizers</h2>
+        <p class="para"  style="color:white;">All organic fertilizers release nutrients slowly & steadily over a period. Organic fertilizers are required to be provided in bulk i.e. larger quantities for an insured continuous supply of nutrients. 
+            They increase the humus content of the soil, keeping the soil moist & overall improving health & quality of the soil.            
+        </p>
+</div>
+
+<hr class="my-4">
+
+
+<!-- Blog Post 20 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/cowmanure.jpg' %}" alt="Cow Dung Manure Fertilizer" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Cow Dung Manure Fertilizer</h2>
+        <p class="para"  style="color:white;"> Cow Manure is the most commonly available organic fertilizer in India. Well rotten cow dung manure should be used instead of fresh cow-dung. Ideal cow dung compost manure is black, moist, and in powdered form and it is one of the best fertilizer for plants at 
+            home due to its ease of use and slow-release of nutrients.                
+        </p>
+</div>
+
+<hr class="my-4">
+
+<!-- Blog Post 21-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/biocompost.jpg' %}" alt="Bio-Compost" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Bio-Compost</h2>
+        <p class="para"  style="color:white;"> Compost manure is obtained from the process of home or farm level composting. It’s either done in composter or compost pit. 
+            Compost is made from household green waste & farmyard brown waste.                
+        </p>
+</div>
+
+<hr class="my-4">
+
+
+<!-- Blog Post 22-->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/vermi.jpg' %}" alt="Vermicompost" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Vermicompost</h2>
+        <p class="para"  style="color:white;">It is manure obtained from the disintegration of organic waste by earthworms. Vermicompost is moist, dark, 
+            consistent manure with a slow & steady supply of nutrients.                
+        </p>
+</div>
+
+<hr class="my-4">
+
+
+<!-- Blog Post 23 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/veggies.jpg' %}" alt="Organic Veggie Mix" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Organic Veggie Mix</h2>
+        <p class="para"  style="color:white;">Organic Veggie Mix is another one of the best fertilizers for vegetable gardens. This 100% organic and all-natural fertilizer is ideal for giving your fruit and vegetable plants the kind of nutrients they need. 
+            Proper application every month will allow you to keep your plants happy and thriving!                    
+        </p>
+</div>
+
+<hr class="my-4">
+
+
+<!-- Blog Post 24 -->
+
+<div class="row blog-card align-items-center mb-4">
+    <div class="col-lg-4">
+        <img src="{% static 'images/blogs-images/epsom.jpg' %}" alt="Epsom Salt" class="img-fluid rounded" style="width:200px;height: 250px;object-fit: cover;margin-left:100px;">
+    </div>
+<div class="col-lg-8">
+    <h2 style="text-align:center;color:white;">Epsom Salt </h2>
+        <p class="para"  style="color:white;">Another great soil amendment/fertilizer, Epsom Salt is a great fertilizer for indoor plants at home. This light-weight and easy to manage fertilizer is used as topsoil and mixed into the soil, improving the ability of the plant roots to absorb nutrients. Over time, it aids fruiting and flowering, giving you healthier and more vibrant plants.                 
+        </p>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

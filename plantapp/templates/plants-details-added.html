@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Plant Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Border and padding for the form */
+        .form-container {
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for the back arrow button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2rem;
+        }
+
+        .back-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body class="container mt-5">
+    <div class="back-btn">
+        <a href="{% url 'sellerhome' %}" class="btn btn-link">
+            <i class="bi bi-arrow-left-circle"></i>Back to Seller Home
+        </a>
+    </div>
+
+    <div class="form-container">
+        <h2 class="mb-4">Product Details Added</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="company_name" class="form-label">Company Name</label>
+                <input type="text" class="form-control" id="company_name" name="company_name" value="{{ company_name }}" readonly>
+            </div>
+            
+            <!-- Plant Name -->
+            <div class="mb-3">
+                <label for="plant_name" class="form-label">Name Of Products</label>
+                <input type="text" class="form-control" id="plant_name" name="plant_name" required>
+            </div>
+
+            <!-- Plant Category -->
+            <div class="mb-3">
+                <label for="plant_category" class="form-label">Category</label>
+                <select class="form-select" id="plant_category" name="plant_category" required>
+                    <option value="Indoor">Indoor</option>
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Medical">Medicinal</option>
+                    <option value="Fertilizers">Fertilizers</option>
+                </select>
+            </div>
+
+            <!-- Plant Size -->
+            <div class="mb-3">
+                <label for="plant_size" class="form-label">Size</label>
+                <select class="form-select" id="plant_size" name="plant_size" required>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+                <label for="price" class="form-label">Price (₹)</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+
+            <!-- Quantity -->
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+
+            <!-- Delivery Charge -->
+            <div class="mb-3">
+                <label for="delivery_charge" class="form-label">Delivery Charge (₹)</label>
+                <input type="number" class="form-control" id="delivery_charge" name="delivery_charge" required>
+            </div>
+
+            <!-- Protection Fee -->
+            <div class="mb-3">
+                <label for="protection_fee" class="form-label">Protection Fee (₹)</label>
+                <input type="number" class="form-control" id="protection_fee" name="protection_fee" required>
+            </div>
+
+            <!-- Plant Image -->
+            <div class="mb-3">
+                <label for="plant_image" class="form-label">Product Image</label>
+                <input type="file" class="form-control" id="plant_image" name="plant_image" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+
+        <a href="{% url 'plantlist' %}" class="btn btn-info mt-4">View All Products</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("company_name").value = "{{ request.user.company_name }}";
+        });
+    </script>
+    
+</body>
+
+</html>
